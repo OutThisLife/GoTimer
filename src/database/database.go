@@ -23,8 +23,8 @@ func init() {
 	db = &con
 }
 
-func GetRows(query string) map[int]string {
-	rows, err := db.Query(query)
+func GetClients() map[int]string {
+	rows, err := db.Query("SELECT * FROM clients")
 	CheckError(err)
 	defer rows.Close()
 

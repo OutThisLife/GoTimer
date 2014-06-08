@@ -24,7 +24,7 @@ func Listen(ch *chan string) {
 func ExtractClient(t string) int {
 	client := int(-1)
 
-	for id, name := range db.GetRows("SELECT * FROM clients") {
+	for id, name := range db.GetClients() {
 		if s.Contains(t, name) {
 			client = id
 		}
