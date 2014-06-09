@@ -1,0 +1,1 @@
+(function(){var n;n=angular.module("app.directives",[]),n.directive("ngScope",function(){return{restrict:"A",scope:!0}}),n.directive("ngExptable",function(){return{restrict:"A",scope:!0,link:function(n){var e;return e=[],n.toggle=function(i){return n.isShown(i)?e.splice(e.indexOf(i),1):e.push(i)},n.isShown=function(n){return e.indexOf(n)>-1}}}})}).call(this);

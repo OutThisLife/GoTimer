@@ -1,0 +1,244 @@
+/**
+ * Core SASS
+ */
+
+@import C:/WWW/Abases/classes.sass
+
+// -----------------------------------------------
+
+/**
+ * Variables
+ */
+$pad: 15px
+
+// Fonts
+$font: Arial, sans-serif
+$headerFont: Georgia, serif
+
+// Colours
+$default: #111
+$secondary: #D64937
+$blue: #1155CC
+$navBg: #FFF
+$border: #DDD
+
+// -----------------------------------------------
+
+/**
+ * Keyframes
+ */
+
+// -----------------------------------------------
+
+/**
+ * Site-specific mixins
+ */
+
+// -----------------------------------------------
+
+/**
+ * General
+ */
+body
+	color: $default
+	font: rem(13)/1.7 $font
+	margin: 0
+	padding: 0
+
+	p, ul, ol, dl, table tr td
+		font: rem(13) $font
+
+a
+	color: $blue
+	text-decoration: none
+
+	&:hover
+		color: $secondary
+		text-decoration: underline
+
+	&:active, &:focus
+		color: complement($blue) !important
+
+*:focus,
+*:active
+	outline: none !important
+
+@include colorSelection
+	color: #FFF
+	background: #000
+
+// -----------------------------------------------
+
+/**
+ * Global styles
+ */
+
+// zf5 form fixes
+form
+	margin: 0
+
+	button, input[type]
+		height: auto
+		font-size: rem(12)
+		margin: 0
+		padding: 6px 5px
+		@include boxShadow(none)
+		@include transition(none)
+
+		&:hover, &:active, &:focus
+			@include boxShadow(none)
+
+	.postfix, .prefix
+		height: auto
+		font-weight: 700
+		font-size: rem(11)
+		line-height: 1.6 !important
+		padding: 6px 0
+		border: 0
+
+	.columns input:only-child
+		border-right: 0
+
+	button, .button
+		font-family: $font
+		@include smartGradient($secondary)
+
+		&:hover
+			@include smartGradient(lighten($secondary, 5))
+
+		&:active, &:focus
+			@include smartGradient($secondary, true)
+
+// Add client quicklink
+.add-client
+	> a
+		display: block
+
+		.fa
+			margin: 0 8px 0 0
+
+	small a
+		display: block
+		font-size: rem(11)
+		margin: 5px 0 0 0
+
+// -----------------------------------------------
+
+/**
+ * Header
+ */
+$headerWidth: 15%
+
+#header
+	z-index: 100
+	width: $headerWidth
+	position: fixed
+	top: 0
+	left: 0
+	bottom: 0
+	padding: 10px 15px
+	border-right: 1px solid #CCC
+	background: $navBg
+
+	nav
+		@include wpMenu
+			@include clearfix
+
+			form
+				z-index: 1
+				float: left
+				top: 3px
+				cursor: pointer
+				@include opacity(.2)
+				font-weight: 400 !important
+				margin: 0 8px 0 0
+
+				&:hover
+					@include opacity(1)
+
+					button
+						color: $secondary
+
+				button
+					color: $default
+					padding: 0
+					margin: 0
+					border: 0
+					background: none
+
+			.client-name
+				display: block
+
+			a
+				color: $default
+				line-height: 1.75
+
+				&:hover
+					color: $blue
+
+			@include wpActives
+				font-weight: 700
+
+// -----------------------------------------------
+
+/**
+ * Containers
+ */
+#content
+	margin: 0 auto 0 $headerWidth
+	padding: 10px 15px
+
+	h1,h2,h3,h4,h5,h6
+		font-family: $headerFont
+		font-weight: 300
+
+	h1
+		margin-bottom: 20px
+
+// -----------------------------------------------
+
+/**
+ * Feed data
+ */
+#content table
+	width: 100%
+	table-layout: fixed
+	border-collapse: separate
+	border: 0
+
+	em
+		@include opacity(.7)
+		font-style: normal
+		font-size: rem(10)
+
+	tr
+		cursor: pointer
+		background: none
+
+		&:hover:not(.children):not(.active) td
+			color: $blue
+			text-decoration: underline
+
+		td
+			border-bottom: 1px solid $border
+
+		// Expandable rows
+		&.active
+			background: $blue
+
+			td
+				color: #FFF
+
+		// Children rows
+		&.children
+			cursor: default
+			background: none
+
+			&:hover
+				background: #F9F9E0
+
+				td
+					font-weight: 700
+
+			td
+				font-size: rem(11)

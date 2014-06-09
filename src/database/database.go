@@ -1,6 +1,7 @@
 package database
 
 import (
+	"time"
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -24,7 +25,7 @@ func init() {
 }
 
 func GetClients() map[int]string {
-	rows, err := db.Query("SELECT * FROM clients")
+	rows, err := db.Query("SELECT id, name FROM clients")
 	CheckError(err)
 	defer rows.Close()
 
@@ -45,11 +46,13 @@ func GetClients() map[int]string {
 
 func SavePath(p *Path) {
 	if p.ClientID != -1 {
-		insert, err := db.Prepare("INSERT INTO testing_table VALUES (?, ?, ?, ?, ?)")
+		insert, err := db.Prepare("INSERT INTO trails (client_id, path, time, created_at, updated_at) VALUES (?, ?, ?, ?, ?)")
 		CheckError(err)
 
 		defer insert.Close()
-		insert.Exec(0, p.ClientID, p.Path, p.Time, p.Date)
+
+		tstamp := time.Now().Format("2006-01-02 15:04:05")
+		insert.Exec(p.ClientID, p.Path, p.Time, tstamp, tstamp)
 	}
 }
 

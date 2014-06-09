@@ -50,7 +50,6 @@ func main() {
 				ClientID: ExtractClient(t),
 				Path: t,
 				Time: 1,
-				Date: time.Now().Unix(),
 			}
 
 		// Add time to current read path
