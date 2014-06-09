@@ -29,7 +29,7 @@
 				</td>
 
 				<td class="text-right" width="150">
-					{{ $t->updated_at }}
+					{{ $t->updated_at->diffForHumans() }}
 				</td>
 			</tr>
 
