@@ -263,12 +263,14 @@ $headerWidth: 15%
 		// Children rows
 		&.children
 			cursor: default
-
-			&:hover
-				background: #F9F9E0
-
-				td
-					font-weight: 700
+			@include transparentBG($primary, .08)
 
 			td
 				font-size: rem(11)
+				border-color: rgba($primary, .1)
+
+			&:hover
+				@include transparentBG($primary, .15)
+
+				td
+					font-weight: 700
