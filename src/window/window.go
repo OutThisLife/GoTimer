@@ -28,7 +28,7 @@ func ForegroundTitle() (bool, string) {
 }
 
 func IsValid(title string) bool {
-	return s.Contains(title, "Sublime Text")
+	return s.Contains(title, "Sublime Text") && s.Contains(title, ".")
 }
 
 func CleanTitle(title string) string {
