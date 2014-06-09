@@ -7,7 +7,7 @@ class Client extends Eloquent {
 	];
 
 	public function trails() {
-		return $this->hasMany('Trail');
+		return $this->hasMany('Trail')->orderBy('created_at', 'desc');
 	}
 
 	public function organizedTrails() {
@@ -26,7 +26,7 @@ class Client extends Eloquent {
 				$mt->id = $t->id;
 				$mt->time = 0;
 				$mt->path = $info['dirname'];
-				$mt->updated_at = $t->created_at;
+				$mt->updated_at = $t->updated_at;
 
 				$r['main'][$info['dirname']] = $mt;
 			endif;
