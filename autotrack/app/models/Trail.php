@@ -4,7 +4,7 @@ class Trail extends Eloquent {
 	protected $guarded = ['id'];
 
 	public function client() {
-		return $htis->belongsTo('Client', 'client_id', 'id');
+		return $this->belongsTo('Client', 'client_id', 'id');
 	}
 
 	public function nicetime() {
