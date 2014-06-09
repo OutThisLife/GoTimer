@@ -2,7 +2,7 @@ package database
 
 import (
 	"fmt"
-	// "time"
+	"time"
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
 )
