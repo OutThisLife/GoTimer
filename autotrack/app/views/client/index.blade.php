@@ -3,6 +3,15 @@
 @section('content')
 
 <div class="group">
+	@if (!($ftest = $allClients->first()))
+	<h1>No clients found.</h1>
+	<p>Add some clients to the left to begin tracking data.</p>
+
+	@elseif ($ftest->trails()->count() === 0)
+	<h1>No log data yet.</h1>
+	<p>Give it time. Go work on a project and refresh this page to see the data coming in.</p>
+
+	@else
 	<h1>Recent Activity</h1>
 
 	<table class="feed-data full-width" ng-exptable>
@@ -50,6 +59,7 @@
 			@endforeach
 		</tbody>
 	</table>
+	@endif
 </div>
 
 @stop

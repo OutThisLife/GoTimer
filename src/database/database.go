@@ -1,7 +1,6 @@
 package database
 
 import (
-	"fmt"
 	"time"
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql"

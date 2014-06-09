@@ -3,7 +3,7 @@ class Client extends Eloquent {
 	protected $table = 'clients';
 	protected $guarded = ['id'];
 	public static $rules = [
-		'name' => 'required|alpha_num|min:3',
+		'name' => 'required|alpha_spaces|min:3',
 	];
 
 	public function trails() {
