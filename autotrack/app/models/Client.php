@@ -16,25 +16,25 @@ class Client extends Eloquent {
 		foreach ($this->trails AS &$t):
 			$r =& $trails[CarbonHelper::humanDiff($t->created_at)];
 			$info = pathinfo($t->path);
+			$base = preg_replace('/(.*' . $this->name . '.*?\\\\{1}.*?)\\\\{1}(.*)$/i', '$1', $info['dirname']);
 
 			if (
 				!is_array($r['main'])
-				|| empty($r['main'][$info['dirname']])
+				|| empty($r['main'][$base])
 			):
 				$mt = new stdClass();
 
 				$mt->id = $t->id;
 				$mt->time = 0;
-				$mt->path = $info['dirname'];
+				$mt->path = $base;
 				$mt->updated_at = $t->updated_at;
 
-				$r['main'][$info['dirname']] = $mt;
+				$r['main'][$base] = $mt;
 			endif;
 
-			$r[$info['dirname']][] = $t;
-			$r['main'][$info['dirname']]->time += $t->time;
+			$r[$base][] = $t;
+			$r['main'][$base]->time += $t->time;
 		endforeach;
-
 
 		return $trails;
 	}
