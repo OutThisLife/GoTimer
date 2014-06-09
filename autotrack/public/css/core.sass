@@ -17,10 +17,16 @@ $headerFont: Georgia, serif
 
 // Colours
 $default: #111
-$secondary: #D64937
-$blue: #1155CC
-$navBg: #FFF
-$border: #DDD
+$primary: #1E9382 // Table headers
+$secondary: #F0563D // Link hover colours
+
+// Body background
+$bg: #FAFAFA
+
+// Navigation styles
+$navLinkColour: #FAFAFA
+$navLinkColourHover: $secondary
+$navBg: #2E313D
 
 // -----------------------------------------------
 
@@ -44,12 +50,13 @@ body
 	font: rem(13)/1.7 $font
 	margin: 0
 	padding: 0
+	background: $bg
 
 	p, ul, ol, dl, table tr td
 		font: rem(13) $font
 
 a
-	color: $blue
+	color: $primary
 	text-decoration: none
 
 	&:hover
@@ -57,7 +64,7 @@ a
 		text-decoration: underline
 
 	&:active, &:focus
-		color: complement($blue) !important
+		color: $secondary
 
 *:focus,
 *:active
@@ -117,6 +124,17 @@ form
 		.fa
 			margin: 0 8px 0 0
 
+	input[type="text"]
+		color: $navLinkColour
+		font-size: rem(11)
+		border: 0
+		border-top: 1px solid lighten($navBg, 20)
+		border-bottom: 1px solid lighten($navBg, 20)
+		background: transparent
+
+		&:focus, &:active
+			@include transparentBG(#FFF, .05)
+
 	small a
 		display: block
 		font-size: rem(11)
@@ -140,10 +158,25 @@ $headerWidth: 15%
 	border-right: 1px solid #CCC
 	background: $navBg
 
+	a
+		color: $navLinkColour
+		line-height: 1.75
+
+		&:hover
+			color: $navLinkColourHover
+
 	nav
 		@include wpMenu
 			@include clearfix
 
+			.client-name
+				display: block
+
+			@include wpActives
+				color: $secondary
+				font-weight: 700
+
+			// Delete button
 			form
 				z-index: 1
 				float: left
@@ -160,24 +193,11 @@ $headerWidth: 15%
 						color: $secondary
 
 				button
-					color: $default
+					color: $navLinkColour
 					padding: 0
 					margin: 0
 					border: 0
 					background: none
-
-			.client-name
-				display: block
-
-			a
-				color: $default
-				line-height: 1.75
-
-				&:hover
-					color: $blue
-
-			@include wpActives
-				font-weight: 700
 
 // -----------------------------------------------
 
@@ -186,7 +206,7 @@ $headerWidth: 15%
  */
 #content
 	margin: 0 auto 0 $headerWidth
-	padding: 10px 15px
+	padding: 30px
 
 	h1,h2,h3,h4,h5,h6
 		font-family: $headerFont
@@ -194,6 +214,16 @@ $headerWidth: 15%
 
 	h1
 		margin-bottom: 20px
+
+	#inner-content
+		padding: 10px 20px
+		border: 1px solid transparent
+		border-top-color: darken($bg, 5)
+		border-left-color: darken($bg, 5)
+		border-right-color: darken($bg, 12)
+		border-bottom-color: darken($bg, 12)
+		@include boxShadow(0 0 6px rgba(#000, .0624))
+		background: #FFF
 
 // -----------------------------------------------
 
@@ -205,6 +235,7 @@ $headerWidth: 15%
 	table-layout: fixed
 	border-collapse: separate
 	border: 0
+	background: transparent
 
 	em
 		@include opacity(.7)
@@ -213,18 +244,18 @@ $headerWidth: 15%
 
 	tr
 		cursor: pointer
-		background: none
+		background: transparent
 
 		&:hover:not(.children):not(.active) td
-			color: $blue
+			color: $secondary
 			text-decoration: underline
 
 		td
-			border-bottom: 1px solid $border
+			border-bottom: 1px solid #DDD
 
 		// Expandable rows
 		&.active
-			background: $blue
+			background: $primary
 
 			td
 				color: #FFF
@@ -232,7 +263,6 @@ $headerWidth: 15%
 		// Children rows
 		&.children
 			cursor: default
-			background: none
 
 			&:hover
 				background: #F9F9E0

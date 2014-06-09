@@ -29,7 +29,7 @@
 		<ul>
 			<li {{ Nav::isActive('/') }}>
 				<a href="{{ URL::route('home') }}">
-					All
+					<form><i class="fa fa-trash-o invisible"></i></form>All
 				</a>
 			</li>
 
@@ -58,6 +58,7 @@
 
 		<div ng-show="showForm" ng-cloak>
 			<input
+				autocomplete="off"
 				type="text"
 				name="client_name"
 				value="{{ Input::old('client_name') }}"
@@ -82,7 +83,9 @@
 
 <!-- CONTENT -->
 <div id="content" itemscope itemtype="http://schema.org/MainContentOfPage">
-	@yield('content')
+	<div id="inner-content">
+		@yield('content')
+	</div>
 </div>
 
 <!-- Scripts -->
