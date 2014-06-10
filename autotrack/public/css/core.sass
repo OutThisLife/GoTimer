@@ -17,16 +17,16 @@ $headerFont: Georgia, serif
 
 // Colours
 $default: #111
-$primary: #1E9382 // Table headers
-$secondary: #F0563D // Link hover colours
+$secondary: #00717D // Link hover colours
+$primary: #45433F // Table headers
 
 // Body background
 $bg: #FAFAFA
 
 // Navigation styles
-$navLinkColour: #FAFAFA
-$navLinkColourHover: $secondary
-$navBg: #2E313D
+$navBg: #282E33
+$navLinkColour: lighten($navBg, 60)
+$navLinkColourHover: #FFA600
 
 // -----------------------------------------------
 
@@ -61,7 +61,6 @@ a
 
 	&:hover
 		color: $secondary
-		text-decoration: underline
 
 	&:active, &:focus
 		color: $secondary
@@ -155,8 +154,8 @@ $headerWidth: 15%
 	left: 0
 	bottom: 0
 	padding: 10px 15px
-	border-right: 1px solid #CCC
-	background: fixed $navBg
+	@include boxShadow(#{"inset -20px 0 20px -15px rgba(0,0,0,.2), inset -1px 0 0 #{lighten($navBg, 35)}, inset -2px 0 0 #{$navBg}"})
+	background: fixed $navBg url(//www.transparenttextures.com/patterns/az-subtle.png)
 
 	a
 		color: $navLinkColour
@@ -173,7 +172,7 @@ $headerWidth: 15%
 				display: block
 
 			@include wpActives
-				color: $secondary
+				color: $navLinkColourHover
 				font-weight: 700
 
 			// Delete button
@@ -190,7 +189,7 @@ $headerWidth: 15%
 					@include opacity(1)
 
 					button
-						color: $secondary
+						color: $navLinkColourHover
 
 				button
 					color: $navLinkColour
@@ -215,8 +214,8 @@ $headerWidth: 15%
 	h1
 		margin-bottom: 20px
 
-	#inner-content
-		padding: 10px 20px
+	.content-section
+		padding: 20px 20px 0
 		border: 1px solid transparent
 		border-top-color: darken($bg, 5)
 		border-left-color: darken($bg, 5)
@@ -230,6 +229,9 @@ $headerWidth: 15%
 /**
  * Feed data
  */
+#content .group .content-section + h2
+	margin-top: 30px
+
 #content table
 	width: 100%
 	table-layout: fixed
@@ -246,9 +248,11 @@ $headerWidth: 15%
 		cursor: pointer
 		background: transparent
 
-		&:hover:not(.children):not(.active) td
-			color: $secondary
-			text-decoration: underline
+		&:hover:not(.children):not(.active)
+			background: $bg
+
+			td
+				color: $secondary
 
 		td
 			border-bottom: 1px solid #DDD

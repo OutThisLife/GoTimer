@@ -9,7 +9,7 @@ class ClientController extends BaseController {
 
 	public function index() {
 		return View::make('client.index', [
-			'allClients' => Client::orderBy('created_at', 'desc')->take(50)->get(),
+			'allClients' => Client::orderBy('created_at', 'desc')->take(125)->get(),
 		]);
 	}
 

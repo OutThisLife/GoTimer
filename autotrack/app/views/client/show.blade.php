@@ -14,11 +14,13 @@
 		<small>{{ current($items['main'])->updated_at->format('m.d.y') }}</small>
 	</h2>
 
-	<table class="feed-data full-width" ng-exptable>
-		<tbody>
-			@include('client.row-data')
-		</tbody>
-	</table>
+	<div class="content-section">
+		<table class="feed-data full-width" ng-exptable>
+			<tbody>
+				@include('client.row-data')
+			</tbody>
+		</table>
+	</div>
 	@endforeach
 
 	@endif

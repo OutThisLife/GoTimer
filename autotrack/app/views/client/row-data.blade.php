@@ -2,8 +2,8 @@
 <!-- Main folder(s) -->
 <tr ng-click="toggle({{ $t->id }})" ng-class="{active: isShown({{ $t->id }})}">
 	<td class="text-center" width="30">
-		<i class="fa fa-angle-double-right" ng-hide="isShown({{ $t->id }})"></i>
-		<i class="fa fa-angle-double-down" ng-show="isShown({{ $t->id }})" ng-cloak></i>
+		<i class="fa fa-angle-right" ng-hide="isShown({{ $t->id }})"></i>
+		<i class="fa fa-angle-down" ng-show="isShown({{ $t->id }})" ng-cloak></i>
 	</td>
 
 	<td width="50%">

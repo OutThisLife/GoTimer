@@ -12,19 +12,21 @@
 	<p>Give it time. Go work on a project and refresh this page to see the data coming in.</p>
 
 	@else
-	<h1>Recent Activity</h1>
+	<h1>Latest Activity</h1>
 
-	<table class="feed-data full-width" ng-exptable>
-		<tbody>
-			@foreach ($allClients AS $client)
-			@foreach ($client->organizedTrails() AS $group => $items)
+	<div class="content-section">
+		<table class="feed-data full-width" ng-exptable>
+			<tbody>
+				@foreach ($allClients AS $client)
+				@foreach ($client->organizedTrails() AS $group => $items)
 
-			@include('client.row-data')
+				@include('client.row-data')
 
-			@endforeach
-			@endforeach
-		</tbody>
-	</table>
+				@endforeach
+				@endforeach
+			</tbody>
+		</table>
+	</div>
 	@endif
 </div>
 

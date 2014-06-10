@@ -83,9 +83,7 @@
 
 <!-- CONTENT -->
 <div id="content" itemscope itemtype="http://schema.org/MainContentOfPage">
-	<div id="inner-content">
-		@yield('content')
-	</div>
+	@yield('content')
 </div>
 
 <!-- Scripts -->
