@@ -15,13 +15,11 @@ class Client extends Eloquent {
 
 		foreach ($this->trails AS &$t):
 			$r =& $trails[CarbonHelper::humanDiff($t->created_at)];
-			$info = pathinfo($t->path);
-			$base = preg_replace('/(.*' . $this->name . '.*?\\\\{1}.*?)\\\\{1}(.*)$/i', '$1', $info['dirname']);
 
-			if (
-				!is_array($r['main'])
-				|| empty($r['main'][$base])
-			):
+			$info = pathinfo($t->path);
+			$base = $this->getBase($info['dirname']);
+
+			if (!is_array($r['main']) || empty($r['main'][$base])):
 				$mt = new stdClass();
 
 				$mt->id = $t->id;
@@ -37,5 +35,9 @@ class Client extends Eloquent {
 		endforeach;
 
 		return $trails;
+	}
+
+	private function getBase($dir) {
+		return preg_replace('/(.*' . $this->name . '.*?\\\\{1}.*?)\\\\{1}(.*)$/i', '$1', $dir);
 	}
 }

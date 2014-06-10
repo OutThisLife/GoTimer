@@ -4,12 +4,12 @@ use \Carbon\Carbon;
 
 class CarbonHelper {
 	public static function humanDiff(Carbon $t) {
-		$diffInDays = $t->diffInDays(Carbon::now());
+		$d = $t->diffForHumans();
 
-		if ($diffInDays === 0) $res = 'Today';
-		else $res = $t->diffForHumans();
+		if ($t->diffInHours() >= 12) $d = 'Yesterday';
+		elseif ($t->diffInDays() === 0) $d = 'Today';
 
-		return $res;
+		return $d;
 	}
 
 	public static function humanSeconds($seconds) {
