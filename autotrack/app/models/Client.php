@@ -19,6 +19,7 @@ class Client extends Eloquent {
 			$info = pathinfo($t->path);
 			$base = $this->getBase($info['dirname']);
 
+			# Add to main group - these are the rows that are clickable to show sub-children
 			if (!is_array($r['main']) || empty($r['main'][$base])):
 				$mt = new stdClass();
 
@@ -30,8 +31,14 @@ class Client extends Eloquent {
 				$r['main'][$base] = $mt;
 			endif;
 
-			$r[$base][] = $t;
 			$r['main'][$base]->time += $t->time;
+
+			# Default full list.
+			if (!empty($r[$base][$t->path]))
+				$r[$base][$t->path]->time += $t->time;
+
+			else
+				$r[$base][$t->path] = $t;
 		endforeach;
 
 		return $trails;
