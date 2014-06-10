@@ -6,12 +6,12 @@
 		<i class="fa fa-angle-double-down" ng-show="isShown({{ $t->id }})" ng-cloak></i>
 	</td>
 
-	<td>
-		{{ CarbonHelper::humanSeconds($t->time) }}
+	<td width="50%">
+		{{ $t->path }}
 	</td>
 
 	<td>
-		{{ $t->path }}
+		<i class="fa fa-clock-o"></i>{{ CarbonHelper::humanSeconds($t->time) }}
 	</td>
 
 	<td class="text-right" width="150">
@@ -24,8 +24,8 @@
 @foreach ($items[$t->path] AS $nt)
 <tr class="children" ng-show="isShown({{ $t->id }})" ng-cloak>
 	<td></td>
-	<td>{{ $nt->nicetime() }}</td>
 	<td>{{ $nt->path }}</td>
+	<td>{{ $nt->nicetime() }}</td>
 	<td></td>
 </tr>
 @endforeach
