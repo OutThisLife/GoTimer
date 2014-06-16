@@ -58,6 +58,7 @@
 
 		<div ng-show="showForm" ng-cloak>
 			<input
+				ng-alt-focus="showForm"
 				autocomplete="off"
 				type="text"
 				name="client_name"

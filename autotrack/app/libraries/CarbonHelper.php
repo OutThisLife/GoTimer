@@ -5,9 +5,11 @@ use \Carbon\Carbon;
 class CarbonHelper {
 	public static function humanDiff(Carbon $t) {
 		$d = $t->diffForHumans();
+		$hours = $t->diffInHours();
+		$days = $t->diffInDays();
 
-		if ($t->diffInHours() >= 12) $d = 'Yesterday';
-		elseif ($t->diffInDays() === 0) $d = 'Today';
+		if ($hours >= 12 && $hours <= 24) $d = 'Yesterday';
+		elseif ($days === 0) $d = 'Today';
 
 		return $d;
 	}
