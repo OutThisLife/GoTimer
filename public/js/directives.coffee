@@ -1,11 +1,9 @@
 app = angular.module 'app.directives', []
 
-# Quickscope
 app.directive 'ngScope', ->
 	restrict: 'A'
 	scope: true
 
-# Expandable table rows
 app.directive 'ngExpandableTable', ->
 	restrict: 'A'
 	scope: true

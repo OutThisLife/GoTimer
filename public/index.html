@@ -28,13 +28,13 @@
 	<ul itemscope itemtype="http://schema.org/SiteNavigationElement">
 		<li>
 			<a href="javascript:;" ng-click="deleteFilter()" ng-class="{active: !search.client}">
-				All
+				View All
 			</a>
 		</li>
 
 		<li ng-show="clients" ng-cloak ng-repeat="c in clients track by $index">
 			<a href="javascript:;" ng-click="filterClient(c)" ng-class="{active: search.client === c}">
-				{{ c }}
+				{{ c }} ({{ data[c] | objLength }})
 			</a>
 		</li>
 	</ul>
@@ -68,7 +68,7 @@
 					</td>
 
 					<td class="text-right" width="150">
-						{{ item.Date }}
+						{{ item.Date | dateToISO | date:'short' }}
 					</td>
 				</tr>
 
