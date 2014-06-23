@@ -19,6 +19,6 @@ app.filter 'humanSeconds', -> (s) ->
 	m = ((s / 60) % 60).toFixed 0
 	s = (s % 60).toFixed 0
 
-	return "#{h}hr #{m}m #{s}s"
+	"#{h}hr #{m}m #{s}s"
 
 app.filter 'dateToISO', -> (d) -> d.replace /(.+) (.+)/, "$1T$2Z"
