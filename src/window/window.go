@@ -1,6 +1,7 @@
 package window
 
 import (
+	"../config"
 	"syscall"
 	"unsafe"
 	"regexp"
@@ -14,7 +15,7 @@ var (
 	procGetWindowTextLengthW = user.NewProc("GetWindowTextLengthW")
 )
 
-func ForegroundTitle() (bool, string) {
+func GetForegroundTitle() (bool, string) {
 	window, _, _ := procGetForegroundWindow.Call()
 
 	textLength, _, _ := procGetWindowTextLengthW.Call(uintptr(window))
@@ -27,11 +28,11 @@ func ForegroundTitle() (bool, string) {
 	return IsValid(title), CleanTitle(title)
 }
 
-func IsValid(title string) bool {
-	return s.Contains(title, "Sublime Text") && s.Contains(title, ".")
+func IsValid(t string) bool {
+	return s.Contains(t, config.Data.GetEditor()) && s.Contains(t, ".")
 }
 
-func CleanTitle(title string) string {
+func CleanTitle(t string) string {
 	r := regexp.MustCompile(`(\s•)?\s\(.*`)
-	return r.ReplaceAllString(title, "")
+	return r.ReplaceAllString(t, "")
 }

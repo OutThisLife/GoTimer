@@ -1,1 +1,0 @@
-(function(){var l;l=angular.module("app.controllers",[]),l.controller("MainController",["$scope",function(){}])}).call(this);

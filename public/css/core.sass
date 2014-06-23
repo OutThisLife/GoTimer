@@ -1,0 +1,196 @@
+/**
+ * Core SASS
+ */
+
+@import C:/WWW/Abases/classes.sass
+
+// -----------------------------------------------
+
+/**
+ * Variables
+ */
+$pad: 15px
+
+// Fonts
+$font: Arial, sans-serif
+$headerFont: Georgia, serif
+
+// Colours
+$default: #111
+$secondary: #00717D // Link hover colours
+$primary: #45433F // Table headers
+
+// Body background
+$bg: #FAFAFA
+
+// Navigation styles
+$navBg: #282E33
+$navLinkColour: lighten($navBg, 60)
+$navLinkColourHover: #FFA600
+
+// -----------------------------------------------
+
+/**
+ * Keyframes
+ */
+
+// -----------------------------------------------
+
+/**
+ * Site-specific mixins
+ */
+
+// -----------------------------------------------
+
+/**
+ * General
+ */
+body
+	color: $default
+	font: rem(13)/1.7 $font
+	margin: 0
+	padding: 0
+	background: $bg
+
+	p, ul, ol, dl, table tr td
+		font: rem(13) $font
+
+a
+	color: $primary
+	text-decoration: none
+
+	&:hover
+		color: $secondary
+
+	&:active, &:focus
+		color: $secondary
+		text-decoration: underline
+
+*:focus,
+*:active
+	outline: none !important
+
+@include colorSelection
+	color: #FFF
+	background: #000
+
+// -----------------------------------------------
+
+/**
+ * Global styles
+ */
+
+// -----------------------------------------------
+
+/**
+ * Header
+ */
+$headerWidth: 15%
+
+#header
+	@include wpMenu
+	z-index: 100
+	width: $headerWidth
+	position: fixed
+	top: 0
+	left: 0
+	bottom: 0
+	padding: 10px 15px
+	@include boxShadow(#{"inset -20px 0 20px -15px rgba(0,0,0,.2), inset -1px 0 0 #{lighten($navBg, 35)}, inset -2px 0 0 #{$navBg}"})
+	background: fixed $navBg url(//www.transparenttextures.com/patterns/az-subtle.png)
+
+	a
+		display: block
+		color: $navLinkColour
+		line-height: 1.75
+		padding: 0 10px
+
+		&:hover, &.active
+			color: $navLinkColourHover
+
+		&.active
+			font-weight: 700
+
+// -----------------------------------------------
+
+/**
+ * Containers
+ */
+#content
+	margin: 0 auto 0 $headerWidth
+	padding: 30px
+
+	h1,h2,h3,h4,h5,h6
+		font-family: $headerFont
+		font-weight: 300
+
+	h1
+		margin-bottom: 20px
+
+	.content-section
+		padding: 20px 20px 0
+		border: 1px solid transparent
+		border-top-color: darken($bg, 5)
+		border-left-color: darken($bg, 5)
+		border-right-color: darken($bg, 12)
+		border-bottom-color: darken($bg, 12)
+		@include boxShadow(0 0 6px rgba(#000, .0624))
+		background: #FFF
+
+// -----------------------------------------------
+
+/**
+ * Feed data
+ */
+#content .group .content-section + h2
+	margin-top: 30px
+
+#content table
+	width: 100%
+	table-layout: fixed
+	border-collapse: separate
+	border: 0
+	background: transparent
+
+	em
+		@include opacity(.7)
+		font-style: normal
+		font-size: rem(10)
+
+	tr
+		cursor: pointer
+		background: transparent
+
+		&:hover:not(.children):not(.active)
+			background: $bg
+
+			td
+				color: $secondary
+
+		td
+			border-bottom: 1px solid #DDD
+
+			&:not(:first-child) .fa
+				margin-right: 5px
+
+		// Expandable rows
+		&.active
+			background: $primary
+
+			td
+				color: #FFF
+
+		// Children rows
+		&.children
+			cursor: default
+			@include transparentBG($primary, .08)
+
+			td
+				font-size: rem(11)
+				border-color: rgba($primary, .1)
+
+			&:hover
+				@include transparentBG($primary, .15)
+
+				td
+					font-weight: 700

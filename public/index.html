@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+	<title>GoTracker</title>
+
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/fontawesome/4.1.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/normalize/3.0.1/normalize.min.css" />
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/foundation/5.2.3/css/foundation.min.css" />
+
+	<link rel="stylesheet" href="css/core.css" />
+	<link rel="shortcut icon" href="favicon.jpg" />
+
+	<script src="//cdn.jsdelivr.net/modernizr/2.8.2/modernizr.min.js"></script>
+
+	<!--[if lt IE 9]>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body ng-controller="MainController" itemscope itemtype="http://schema.org/WebPage">
+
+<!-- HEADER -->
+<div id="header" role="banner" itemscope itemtype="http://schema.org/WPHeader">
+	<ul itemscope itemtype="http://schema.org/SiteNavigationElement">
+		<li>
+			<a href="javascript:;" ng-click="deleteFilter()" ng-class="{active: !search.client}">
+				All
+			</a>
+		</li>
+
+		<li ng-show="clients" ng-cloak ng-repeat="c in clients track by $index">
+			<a href="javascript:;" ng-click="filterClient(c)" ng-class="{active: search.client === c}">
+				{{ c }}
+			</a>
+		</li>
+	</ul>
+</div>
+
+<!-- CONTENT -->
+<div id="content" itemscope itemtype="http://schema.org/MainContentOfPage">
+
+<div ng-hide="hasData()" ng-cloak>
+	<h2>No log data found for <code>{{ search.client }}</code>.</h2>
+</div>
+
+<div class="group"  ng-cloak ng-repeat="(client, trail) in data | with:search track by $index">
+	<h2>{{ client }}</h2>
+
+	<div class="content-section">
+		<table class="feed-data full-width" ng-expandable-table>
+			<tbody ng-repeat="item in trail track by $index">
+				<tr ng-click="toggle(item.id)" ng-class="{active: isShown(item.id)}">
+					<td class="text-center" width="30">
+						<i class="fa fa-angle-right" ng-hide="isShown(item.id)"></i>
+						<i class="fa fa-angle-down" ng-show="isShown(item.id)" ng-cloak></i>
+					</td>
+
+					<td width="50%">
+						{{ item.Path }}
+					</td>
+
+					<td>
+						<i class="fa fa-clock-o"></i>{{ item.Time | humanSeconds }}
+					</td>
+
+					<td class="text-right" width="150">
+						{{ item.Date }}
+					</td>
+				</tr>
+
+				<tr class="children" ng-show="isShown(item.id)" ng-cloak ng-repeat="child in item.children track by $index">
+					<td></td>
+					<td>{{ child.Path }}</td>
+					<td>{{ child.Time | humanSeconds }}</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+</div>
+
+<!-- Scripts -->
+<script data-main="js/core" src="//cdn.jsdelivr.net/requirejs/2.1.11/require.min.js"></script>
+
+</body>
+</html>

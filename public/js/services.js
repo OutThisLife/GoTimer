@@ -1,0 +1,1 @@
+(function(){var r;r=angular.module("app.services",[]),r.service("$xhr",["$http","$q",function(r,e){return{fetch:function(t){var c;return c=e.defer(),r({method:"GET",url:"http://localhost:8080"+t,cache:!0}).success(function(r,e,t){var n;return n=[],n.data=r,n.headers=t(),c.resolve(n)}).error(function(r,e){return c.reject(r,e)}),c.promise}}}])}).call(this);
