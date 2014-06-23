@@ -1,11 +1,12 @@
 package window
 
 import (
-	"../config"
 	"syscall"
 	"unsafe"
 	"regexp"
 	s "strings"
+
+	cfg "../config"
 )
 
 var (
@@ -29,7 +30,7 @@ func GetForegroundTitle() (bool, string) {
 }
 
 func IsValid(t string) bool {
-	return s.Contains(t, config.Data.GetEditor()) && s.Contains(t, ".")
+	return s.Contains(t, cfg.Data.GetEditor()) && s.Contains(t, ".")
 }
 
 func CleanTitle(t string) string {
