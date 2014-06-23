@@ -1,5 +1,5 @@
 requirejs.config
-	baseUrl: '/golang/public/js' # Talasan [dev]
+	baseUrl: '/golang/public/js'
 	urlArgs: "bust=#{(new Date()).getTime()}"
 
 	paths:

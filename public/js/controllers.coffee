@@ -35,7 +35,7 @@ app.controller 'MainController', ['$scope', '$xhr', ($scope, $xhr) ->
 				dir.substring 0, dir.LastIndexOf('/')
 		)()
 
-		return dir.replace "/(.*#{name}.*?\\\\{1}.*?)\\\\{1}(.*)$/i", '$1'
+		dir.replace "/(.*#{name}.*?\\\\{1}.*?)\\\\{1}(.*)$/i", '$1'
 
 	# Allow for filtering
 	$scope.search = {}
