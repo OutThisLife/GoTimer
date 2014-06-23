@@ -2,12 +2,7 @@
 	"dsn": "root@/gotest",
 	"editor": "Sublime Text",
 	"clientFolders": [
-		"Glide Design",
-		"GKW",
-		"getAha",
-		"Foda Studio",
-		"NWS",
-		"wp",
-		"golang"
+		"Client1",
+		"Client2"
 	]
 }
