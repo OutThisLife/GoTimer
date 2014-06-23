@@ -28,6 +28,7 @@ func init() {
 	create, err := db.Prepare("CREATE TABLE IF NOT EXISTS trails (`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, client varchar(128), path varchar(255), time int(11), created_at TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)")
 	CheckError(err)
 
+	defer create.Close()
 	create.Exec()
 }
 
@@ -51,7 +52,7 @@ func DumpData() []Trail {
 	for rows.Next() {
 		var r Trail
 
-		err = rows.Scan(&r.ID, &r.ClientName, &r.Time, &r.Date, &r.Path)
+		err = rows.Scan(&r.ID, &r.ClientName, &r.Path, &r.Time, &r.Date)
 		CheckError(err)
 
 		got = append(got, r)
