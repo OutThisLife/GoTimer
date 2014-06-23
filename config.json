@@ -1,8 +1,0 @@
-{
-	"dsn": "root@/gotest",
-	"editor": "Sublime Text",
-	"clientFolders": [
-		"Client1",
-		"Client2"
-	]
-}
