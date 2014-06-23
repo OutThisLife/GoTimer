@@ -19,12 +19,16 @@ app.controller 'MainController', ['$scope', '$xhr', ($scope, $xhr) ->
 					Date: t.Date
 
 			r[t.ClientName][base].children = {} unless r[t.ClientName][base].children?
-			r[t.ClientName][base].children[t.Path] = t unless r[t.ClientName][base].children[t.Path]?
+
+			unless r[t.ClientName][base].children[t.Path]?
+				r[t.ClientName][base].children[t.Path] = t
+				r[t.ClientName][base].children[t.Path].Time = 0
 
 			r[t.ClientName][base].Time += t.Time
 			r[t.ClientName][base].children[t.Path].Time += t.Time
 
 		$scope.data = r
+		console.log r
 
 	getBase = (name, dir) ->
 		dir = (->
