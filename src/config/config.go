@@ -41,7 +41,7 @@ func (c *ConfigData) ParseClient(t string) string {
 }
 
 func init() {
-	file, err := io.ReadFile("../config.json")
+	file, err := io.ReadFile("config.json")
 
 	if err != nil {
 		panic(err.Error())
