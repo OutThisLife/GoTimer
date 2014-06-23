@@ -24,6 +24,11 @@ func init() {
 	CheckError(err)
 
 	db = &con
+
+	create, err := db.Prepare("CREATE TABLE IF NOT EXISTS trails (`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, client varchar(128), path varchar(255), time int(11), created_at TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)")
+	CheckError(err)
+
+	create.Exec()
 }
 
 func SavePath(p *Trail) {

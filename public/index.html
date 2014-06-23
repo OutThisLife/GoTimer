@@ -52,7 +52,7 @@
 
 	<div class="content-section">
 		<table class="feed-data full-width" ng-expandable-table>
-			<tbody ng-repeat="item in trail track by $index">
+			<tbody ng-repeat="item in trail | orderBy:'-Date' track by $index">
 				<tr ng-click="toggle(item.id)" ng-class="{active: isShown(item.id)}">
 					<td class="text-center" width="30">
 						<i class="fa fa-angle-right" ng-hide="isShown(item.id)"></i>

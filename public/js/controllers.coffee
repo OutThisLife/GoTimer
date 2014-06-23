@@ -25,8 +25,6 @@ app.controller 'MainController', ['$scope', '$xhr', ($scope, $xhr) ->
 			r[t.ClientName][base].children[t.Path].Time += t.Time
 
 		$scope.data = r
-		console.log typeof(r['Glide Design'])
-		console.log typeof(r['wp'])
 
 	getBase = (name, dir) ->
 		dir = (->
